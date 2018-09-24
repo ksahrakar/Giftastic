@@ -6,3 +6,7 @@
     width:225;
     height:225;
 }
+
+#inputDiv{
+    float: right;
+}

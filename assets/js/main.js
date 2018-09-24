@@ -44,10 +44,8 @@ $(".clickable").on("click",function(){
 });
 
 // toggle animation on click
-$(".pic").on("click",function(){
-    console.log("pic clicked");
+$(document.body).on("click",".pic",function(){
     localState=$(this).attr("data-state");
-    console.log(localState);
 
     if(localState==="still"){
         $(this).attr("src", $(this).attr("data-animate"));
@@ -58,4 +56,4 @@ $(".pic").on("click",function(){
     }
 });
 
-//
+// add a new mood
