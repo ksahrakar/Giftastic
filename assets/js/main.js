@@ -17,7 +17,7 @@ for (j=0;j<(moods.length);j++){
 };
 
 // make buttons clickable
-$(".clickable").click(function(){
+$(".clickable").on("click",function(){
     clickedMood = $(this).attr("value");
 
     // Make query through API and prepend gif's and ratings
@@ -27,21 +27,29 @@ $(".clickable").click(function(){
     }).then(function(response){
         //console.log(response);
         for (i=0;i<10;i++){
+            var gifClabel = "["+clickedMood+"]["+i+"]";
+            //var gifLocation = "g"+gifClabel;
+            $("#container").prepend($("<div>").attr({class:"gif",id:gifClabel}));
             var giphURLa = response.data[i].images.downsized_medium.url;
-            //$("#endP").prepend("<img src="+giphURLa+" width=200px height=200px>");
+            //$("#gifs").prepend("<img src="+giphURLa+" width=200px height=200px>");
             var giphURLs = response.data[i].images.downsized_still.url;
-            $("#endP").prepend("<img class=pic src="+giphURLs+" data-animate="+giphURLa+" data-still="+giphURLs+" data-state=still>");
+            $("#gifs").prepend("<img class=pic src="+giphURLs+" data-animate="+giphURLa+" data-still="+giphURLs+" data-state="+state+">");
             var giphRating = response.data[i].rating;
             var giphTitle = response.data[i].title;
-            $("#endP").prepend($("<h5>").text("Rating: "+giphRating+" Title: "+giphTitle));
+            //$("#"+gifClabel).text("hi there")
+            $("#gifs").prepend($("<h6>").text("Title: "+giphTitle));
+            $("#gifs").prepend($("<h6>").text("Rating: "+giphRating));
         }
     });
 });
 
 // toggle animation on click
 $(".pic").on("click",function(){
-    state=$(this).attr("data-state");
-    if(state=="still"){
+    console.log("pic clicked");
+    localState=$(this).attr("data-state");
+    console.log(localState);
+
+    if(localState==="still"){
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
     } else {
