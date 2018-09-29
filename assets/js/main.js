@@ -27,20 +27,26 @@ $(document.body).on("click",".clickable",function(){
         url: queryURL[parseInt(clickedMood)],
         method: "GET"
     }).then(function(response){
-        //console.log(response);
+        console.log(response);
         for (i=0;i<10;i++){
             var gifClabel = "["+clickedMood+"]["+i+"]";
-            //var gifLocation = "g"+gifClabel;
-            $("#container").prepend($("<div>").attr({class:"gif",id:gifClabel}));
-            var giphURLa = response.data[i].images.downsized_medium.url;
+
+            var giphURLa = response.data[i].images.fixed_width.url;
             //$("#gifs").prepend("<img src="+giphURLa+" width=200px height=200px>");
-            var giphURLs = response.data[i].images.downsized_still.url;
-            $("#gifs").prepend("<img class=pic src="+giphURLs+" data-animate="+giphURLa+" data-still="+giphURLs+" data-state="+state+">");
+            var giphURLs = response.data[i].images.fixed_width_still.url;
             var giphRating = response.data[i].rating;
             var giphTitle = response.data[i].title;
+
+            var newElement = $("<span>").attr({class:"gif",id:gifClabel})
+            // newElement.css("display", "flex");
+
+            newElement.prepend("<img class='pic' src="+giphURLs+" data-animate="+giphURLa+" data-still="+giphURLs+" data-state="+state+">");
+            //var gifLocation = "g"+gifClabel;
+            newElement.prepend($("<h6>").text(giphTitle));
+            newElement.prepend($("<h6>").text("Rating: "+giphRating));
+
+            $("#container").prepend(newElement);
             //$("#"+gifClabel).text("hi there")
-            $("#gifs").prepend($("<h6>").text("Title: "+giphTitle));
-            $("#gifs").prepend($("<h6>").text("Rating: "+giphRating));
         }
     });
 });

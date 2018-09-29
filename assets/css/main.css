@@ -2,15 +2,23 @@
     cursor: pointer;
 }
 
-.gifs{
-    width:250;
-    height:250;
-}
-
 #inputDiv{
     float: right;
 }
 
-.pic{
-    object-fit: contain;
+.gif{
+    float:right;
+    margin:5px;
+    background-color: rgb(195, 209, 223);
+    height:300px;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+}
+
+body{
+    margin:5px 20px 25px 20px;
+}
+
+h1{
+    text-align: center;
 }
