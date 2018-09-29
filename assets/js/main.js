@@ -68,4 +68,5 @@ $("#newMoodBtn").on("click", function() {
     $("#btn-"+y).text(moods[y]).attr("class","clickable");
     $("#btn-"+y).text(moods[y]).attr("value",y);
     queryURL[y]="https://api.giphy.com/v1/gifs/search?q="+moods[y]+"&api_key="+api_key+"&limit=10";
+    $("#newMood").attr("value","");
 })

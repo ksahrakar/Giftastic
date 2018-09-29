@@ -12,6 +12,5 @@
 }
 
 .pic{
-    size: auto;
-    
+    object-fit: contain;
 }
