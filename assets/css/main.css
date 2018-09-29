@@ -2,11 +2,16 @@
     cursor: pointer;
 }
 
-.gif{
-    width:225;
-    height:225;
+.gifs{
+    width:250;
+    height:250;
 }
 
 #inputDiv{
     float: right;
+}
+
+.pic{
+    size: auto;
+    
 }

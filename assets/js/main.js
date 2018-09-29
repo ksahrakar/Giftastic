@@ -6,6 +6,7 @@ var state="still";
 
 // Premade mood buttons in array
 var moods = ["happy","sad","mad","loving"];
+
 for (j=0;j<(moods.length);j++){
     $("#btn-place").prepend($("<button>").attr("id",("btn-"+j)));
     //label each button
@@ -17,7 +18,8 @@ for (j=0;j<(moods.length);j++){
 };
 
 // make buttons clickable
-$(".clickable").on("click",function(){
+$(document.body).on("click",".clickable",function(){
+//$(".clickable").on("click",function(){
     clickedMood = $(this).attr("value");
 
     // Make query through API and prepend gif's and ratings
@@ -57,3 +59,13 @@ $(document.body).on("click",".pic",function(){
 });
 
 // add a new mood
+$("#newMoodBtn").on("click", function() {
+    //get value of input field and add to array
+    y=moods.length;
+    var x = $("#newMood").val();
+    moods.push(x);
+    $("#btn-place").prepend($("<button>").attr("id",("btn-"+y)));
+    $("#btn-"+y).text(moods[y]).attr("class","clickable");
+    $("#btn-"+y).text(moods[y]).attr("value",y);
+    queryURL[y]="https://api.giphy.com/v1/gifs/search?q="+moods[y]+"&api_key="+api_key+"&limit=10";
+})
